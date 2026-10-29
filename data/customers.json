@@ -1,0 +1,23 @@
+[
+    {
+        "id": "C001",
+        "name": "Ajay",
+        "phone": "9876543210",
+        "email": "Ajay@gmail.com",
+        "address": "Hyderabad"
+    },
+    {
+        "id": "C002",
+        "name": "Naveen",
+        "phone": "9012345678",
+        "email": "naveen@gmail.com",
+        "address": "Karimnagar"
+    },
+    {
+        "id": "C003",
+        "name": "Nithin",
+        "phone": "9876512340",
+        "email": "nithin@gmail.com",
+        "address": "Jammikunta"
+    }
+]

@@ -1,0 +1,100 @@
+[
+    {
+        "bill_number": "B20261014003243",
+        "date": "14-10-2026 00:32:43",
+        "customer_id": "C001",
+        "customer_name": "Ajay",
+        "items": [
+            {
+                "product_id": "P001",
+                "name": "Rice",
+                "price": 100.0,
+                "quantity": 3,
+                "amount": 300.0
+            }
+        ],
+        "subtotal": 300.0,
+        "discount_percent": 10.0,
+        "discount_amount": 30.0,
+        "gst_percent": 5,
+        "gst_amount": 13.5,
+        "grand_total": 283.5
+    },
+    {
+        "bill_number": "B20261016003532928353",
+        "date": "2026-10-16 00:35:32",
+        "customer_id": "C002",
+        "customer_name": "Naveen",
+        "items": [
+            {
+                "product_id": "P001",
+                "name": "Rice",
+                "price": 100.0,
+                "quantity": 5,
+                "amount": 500.0
+            },
+            {
+                "product_id": "P002",
+                "name": "Laptop",
+                "price": 40000.0,
+                "quantity": 1,
+                "amount": 40000.0
+            }
+        ],
+        "subtotal": 40500.0,
+        "discount_percent": 10.0,
+        "discount_amount": 4050.0,
+        "gst_percent": 5,
+        "gst_amount": 1822.5,
+        "grand_total": 38272.5
+    },
+    {
+        "bill_number": "B20261016005354848451",
+        "date": "2026-10-16 00:53:54",
+        "customer_id": "C001",
+        "customer_name": "Ajay",
+        "items": [
+            {
+                "product_id": "P001",
+                "name": "Rice",
+                "price": 100.0,
+                "quantity": 3,
+                "amount": 300.0
+            },
+            {
+                "product_id": "P002",
+                "name": "Laptop",
+                "price": 40000.0,
+                "quantity": 1,
+                "amount": 40000.0
+            }
+        ],
+        "subtotal": 40300.0,
+        "discount_percent": 8.0,
+        "discount_amount": 3224.0,
+        "gst_percent": 5,
+        "gst_amount": 1853.8,
+        "grand_total": 38929.8
+    },
+    {
+        "bill_number": "B20261016011002890486",
+        "date": "2026-10-16 01:10:02",
+        "customer_id": "C001",
+        "customer_name": "Ajay",
+        "items": [
+            {
+                "product_id": "P001",
+                "name": "Rice",
+                "price": 100.0,
+                "quantity": 9,
+                "amount": 900.0
+            }
+        ],
+        "subtotal": 900.0,
+        "discount_percent": 9.8,
+        "discount_amount": 88.2,
+        "gst_percent": 5,
+        "gst_amount": 40.59,
+        "grand_total": 852.39
+    }
+]

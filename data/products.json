@@ -1,0 +1,16 @@
+[
+    {
+        "id": "P001",
+        "name": "Rice",
+        "category": "Grocery",
+        "price": 100.0,
+        "quantity": 0
+    },
+    {
+        "id": "P002",
+        "name": "Laptop",
+        "category": "Electronics",
+        "price": 40000.0,
+        "quantity": 13
+    }
+]
