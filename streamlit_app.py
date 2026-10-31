@@ -84,7 +84,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# ---------------- SIDEBAR ----------------
+# SIDEBAR
 
 st.sidebar.title("🛒 Smart Billing")
 
@@ -121,7 +121,7 @@ st.sidebar.info(
     "Smart Billing & Inventory Management System"
 )
 
-# ---------------- SIDEBAR STYLING ----------------
+# SIDEBAR STYLING
 
 st.markdown(
     """
@@ -150,7 +150,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# ---------------- DASHBOARD ----------------
+# DASHBOARD
 
 if menu == "🏠 Dashboard":
 
@@ -160,9 +160,7 @@ if menu == "🏠 Dashboard":
         "Welcome to the Smart Billing and Inventory Management System"
     )
 
-    # ==========================================================
     # DASHBOARD SUMMARY
-    # ==========================================================
 
     connection = get_connection()
 
@@ -213,9 +211,7 @@ if menu == "🏠 Dashboard":
             """
         ).fetchone()[0]
 
-        # ======================================================
         # SUMMARY CARDS
-        # ======================================================
 
         st.divider()
 
@@ -247,9 +243,7 @@ if menu == "🏠 Dashboard":
                 f"₹{total_revenue:,.2f}"
             )
 
-        # ======================================================
         # TODAY'S SUMMARY
-        # ======================================================
 
         st.subheader("📅 Today's Summary")
 
@@ -304,7 +298,7 @@ if menu == "🏠 Dashboard":
     st.divider()
 
 
-# ---------------- PRODUCTS ----------------
+# PRODUCTS
 
 elif menu == "📦 Products":
 
@@ -649,7 +643,7 @@ elif menu == "📦 Products":
                 connection.close()
 
 
-# ---------------- INVENTORY ----------------
+# INVENTORY
 
 elif menu == "📊 Inventory":
 
@@ -968,7 +962,7 @@ elif menu == "📊 Inventory":
         connection.close()
 
 
-# ---------------- CUSTOMERS ----------------
+# CUSTOMERS
 
 elif menu == "👥 Customers":
 
@@ -1456,15 +1450,13 @@ elif menu == "👥 Customers":
                 connection.close()
     
 
-# ---------------- BILLING ----------------
+# BILLING
 
 elif menu == "🧾 Billing":
 
     st.title("🧾 Billing")
 
-    # -----------------------------
     # CUSTOMER SELECTION
-    # -----------------------------
 
     st.subheader("👤 Select Customer")
 
@@ -1509,9 +1501,7 @@ elif menu == "🧾 Billing":
 
         selected_customer_id = customer_options[selected_customer]
 
-        # -----------------------------
         # PRODUCT SELECTION
-        # -----------------------------
 
         st.divider()
         st.subheader("📦 Add Products")
@@ -1565,9 +1555,7 @@ elif menu == "🧾 Billing":
                 step=1
             )
 
-            # -----------------------------
             # ADD TO CART
-            # -----------------------------
 
             if st.button("➕ Add to Cart"):
 
@@ -1654,9 +1642,7 @@ elif menu == "🧾 Billing":
                 finally:
                     connection.close()
 
-        # -----------------------------
         # SHOPPING CART
-        # -----------------------------
 
         st.divider()
         st.subheader("🛒 Shopping Cart")
@@ -1708,9 +1694,7 @@ elif menu == "🧾 Billing":
 
                 subtotal += item["amount"]
 
-            # -----------------------------
             # SUBTOTAL
-            # -----------------------------
 
             st.markdown("---")
 
@@ -1719,9 +1703,7 @@ elif menu == "🧾 Billing":
                 f"₹{subtotal:,.2f}"
             )
 
-            # -----------------------------
             # DISCOUNT & GST
-            # -----------------------------
 
             st.divider()
             st.subheader("💰 Bill Calculation")
@@ -1752,9 +1734,7 @@ elif menu == "🧾 Billing":
                     key="gst_percent"
                 )
 
-            # -----------------------------
             # CALCULATE DISCOUNT
-            # -----------------------------
 
             discount_amount = (
                 subtotal * discount_percent / 100
@@ -1765,25 +1745,19 @@ elif menu == "🧾 Billing":
                 subtotal - discount_amount
             )
 
-            # -----------------------------
             # CALCULATE GST
-            # -----------------------------
 
             gst_amount = (
                 amount_after_discount * gst_percent / 100
             )
 
-            # -----------------------------
             # GRAND TOTAL
-            # -----------------------------
 
             grand_total = (
                 amount_after_discount + gst_amount
             )
 
-            # -----------------------------
             # BILL SUMMARY
-            # -----------------------------
 
             st.subheader("🧾 Bill Summary")
 
@@ -1817,9 +1791,7 @@ elif menu == "🧾 Billing":
                     f"₹{grand_total:,.2f}"
                 )
                 
-            # -----------------------------
             # GENERATE BILL
-            # -----------------------------
 
             st.divider()
 
@@ -1842,9 +1814,7 @@ elif menu == "🧾 Billing":
                         "%Y-%m-%d %H:%M:%S"
                     )
 
-                    # --------------------------------
                     # Verify stock before saving bill
-                    # --------------------------------
 
                     stock_valid = True
 
@@ -1879,9 +1849,7 @@ elif menu == "🧾 Billing":
 
                     if stock_valid:
 
-                        # --------------------------------
                         # Insert Sale
-                        # --------------------------------
 
                         cursor.execute("""
                             INSERT INTO sales (
@@ -1921,9 +1889,7 @@ elif menu == "🧾 Billing":
                             selected_customer_id
                         ))
 
-                        # --------------------------------
                         # Insert Sale Items
-                        # --------------------------------
 
                         for item in st.session_state.cart:
 
@@ -1946,9 +1912,7 @@ elif menu == "🧾 Billing":
                                 item["amount"]
                             ))
 
-                            # --------------------------------
                             # Update Product Stock
-                            # --------------------------------
 
                             cursor.execute("""
                                 UPDATE products
@@ -1986,9 +1950,7 @@ elif menu == "🧾 Billing":
                     connection.close()
 
 
-            # -----------------------------
             # INVOICE DISPLAY
-            # -----------------------------
 
             if "last_bill_number" in st.session_state:
 
@@ -2048,9 +2010,7 @@ elif menu == "🧾 Billing":
 
                 if bill:
 
-                    # -----------------------------
                     # PRINTABLE INVOICE CONTAINER
-                    # -----------------------------
 
                     with st.container(key="invoice_container"):
 
@@ -2066,9 +2026,7 @@ elif menu == "🧾 Billing":
 
                         st.divider()
 
-                        # -----------------------------
                         # BILL DETAILS
-                        # -----------------------------
 
                         col1, col2 = st.columns(2)
 
@@ -2094,9 +2052,7 @@ elif menu == "🧾 Billing":
 
                         st.divider()
 
-                        # -----------------------------
                         # PURCHASED ITEMS
-                        # -----------------------------
 
                         st.subheader("📦 Purchased Items")
 
@@ -2126,9 +2082,7 @@ elif menu == "🧾 Billing":
 
                         st.divider()
 
-                        # -----------------------------
                         # TOTALS
-                        # -----------------------------
 
                         col1, col2 = st.columns(2)
 
@@ -2158,17 +2112,13 @@ elif menu == "🧾 Billing":
                                 f"₹{bill['grand_total']:,.2f}**"
                             )
 
-                    # -----------------------------
                     # SUCCESS MESSAGE
-                    # -----------------------------
 
                     st.success(
                         f"✅ Invoice {bill['bill_number']} generated successfully!"
                     )
 
-                    # -----------------------------
                     # PRINT INVOICE
-                    # -----------------------------
 
                     st.divider()
 
@@ -2199,7 +2149,7 @@ elif menu == "🧾 Billing":
             st.info("Your cart is empty.")
 
 
-# ---------------- REPORTS ----------------
+# REPORTS
 
 elif menu == "📈 Reports":
 
@@ -2211,9 +2161,7 @@ elif menu == "📈 Reports":
 
     st.divider()
 
-    # -----------------------------
     # DATE FILTER
-    # -----------------------------
 
     st.subheader("📅 Select Date Range")
 
@@ -2255,9 +2203,7 @@ elif menu == "📈 Reports":
 
             cursor = connection.cursor()
 
-            # -----------------------------
             # GET SALES
-            # -----------------------------
 
             cursor.execute("""
                 SELECT
@@ -2280,9 +2226,7 @@ elif menu == "📈 Reports":
 
             sales = cursor.fetchall()
 
-            # -----------------------------
             # SALES SUMMARY
-            # -----------------------------
 
             st.subheader("📊 Sales Summary")
 
@@ -2336,9 +2280,7 @@ elif menu == "📈 Reports":
 
             st.divider()
 
-            # -----------------------------
             # SALES RECORDS
-            # -----------------------------
 
             st.subheader("📋 Sales Records")
 
@@ -2384,9 +2326,7 @@ elif menu == "📈 Reports":
 
             st.divider()
             
-            # -----------------------------
             # DOWNLOAD SALES REPORT
-            # -----------------------------
 
             if sales:
 
@@ -2430,9 +2370,7 @@ elif menu == "📈 Reports":
                     mime="text/csv"
                 )
 
-            # -----------------------------
             # BILL DETAILS
-            # -----------------------------
 
             st.subheader("🧾 Bill Details")
 
@@ -2504,9 +2442,7 @@ elif menu == "📈 Reports":
                             f"₹{selected_sale['grand_total']:,.2f}"
                         )
 
-                    # -----------------------------
                     # BILL ITEMS
-                    # -----------------------------
 
                     st.subheader("📦 Purchased Items")
 
@@ -2562,7 +2498,7 @@ elif menu == "📈 Reports":
             connection.close()
 
 
-# ---------------- ANALYTICS ----------------
+# ANALYTICS
 
 elif menu == "📊 Analytics":
 
@@ -2580,9 +2516,7 @@ elif menu == "📊 Analytics":
     
         cursor = connection.cursor()
 
-        # =========================================
         # 1. BEST-SELLING PRODUCTS
-        # =========================================
 
         st.subheader("🏆 Best-Selling Products")
 
@@ -2613,9 +2547,7 @@ elif menu == "📊 Analytics":
                 ]
             )
 
-            # -----------------------------
             # TOP PRODUCT
-            # -----------------------------
 
             top_product = products[0]
 
@@ -2644,9 +2576,7 @@ elif menu == "📊 Analytics":
 
             st.divider()
 
-            # -----------------------------
             # PRODUCT SALES TABLE
-            # -----------------------------
 
             st.write("### 📋 Product Sales Summary")
 
@@ -2658,9 +2588,7 @@ elif menu == "📊 Analytics":
 
             st.divider()
 
-            # -----------------------------
             # QUANTITY SOLD CHART
-            # -----------------------------
 
             st.write("### 📊 Quantity Sold by Product")
 
@@ -2674,9 +2602,7 @@ elif menu == "📊 Analytics":
 
             st.divider()
 
-            # -----------------------------
             # REVENUE BY PRODUCT
-            # -----------------------------
 
             st.write("### 💰 Revenue by Product")
 
@@ -2694,9 +2620,7 @@ elif menu == "📊 Analytics":
                 "No sales data available for analysis."
             )
 
-        # =========================================
         # 2. REVENUE ANALYSIS
-        # =========================================
 
         st.subheader("💰 Revenue Analysis")
 
@@ -2726,9 +2650,7 @@ elif menu == "📊 Analytics":
                 ]
             )
 
-            # -----------------------------
             # REVENUE SUMMARY
-            # -----------------------------
 
             total_revenue = revenue_data["Revenue"].sum()
 
@@ -2778,9 +2700,7 @@ elif menu == "📊 Analytics":
                     f"₹{total_gst:,.2f}"
                 )
 
-            # -----------------------------
             # REVENUE TABLE
-            # -----------------------------
 
             st.write("### 📋 Revenue Details")
 
@@ -2792,9 +2712,7 @@ elif menu == "📊 Analytics":
 
             st.divider()
 
-            # -----------------------------
             # REVENUE CHART
-            # -----------------------------
 
             st.write("### 📈 Revenue by Sale")
 
@@ -2812,9 +2730,7 @@ elif menu == "📊 Analytics":
                 "No sales data available for revenue analysis."
             )
 
-        # =========================================
         # 3. CUSTOMER PURCHASE ANALYSIS
-        # =========================================
 
         st.subheader("👥 Customer Purchase Analysis")
 
@@ -2845,9 +2761,7 @@ elif menu == "📊 Analytics":
                 ]
             )
 
-            # -----------------------------
             # CUSTOMER SUMMARY
-            # -----------------------------
 
             total_customers = len(customer_records)
 
@@ -2875,9 +2789,7 @@ elif menu == "📊 Analytics":
 
             st.divider()
 
-            # -----------------------------
             # CUSTOMER PURCHASE TABLE
-            # -----------------------------
 
             st.write("### 📋 Customer Purchase Summary")
 
@@ -2889,9 +2801,7 @@ elif menu == "📊 Analytics":
 
             st.divider()
 
-            # -----------------------------
             # PURCHASES BY CUSTOMER
-            # -----------------------------
 
             st.write("### 📊 Number of Bills by Customer")
 
@@ -2905,9 +2815,7 @@ elif menu == "📊 Analytics":
 
             st.divider()
 
-            # -----------------------------
             # REVENUE BY CUSTOMER
-            # -----------------------------
 
             st.write("### 💰 Spending by Customer")
 
@@ -2925,9 +2833,7 @@ elif menu == "📊 Analytics":
                 "No customer purchase data available."
             )
             
-        # =========================================
         # 4. MONTHLY SALES ANALYSIS
-        # =========================================
 
         st.subheader("📅 Monthly Sales Analysis")
 
@@ -2956,9 +2862,7 @@ elif menu == "📊 Analytics":
                 ]
             )
 
-            # -----------------------------
             # MONTHLY SUMMARY
-            # -----------------------------
 
             total_months = len(monthly_records)
 
@@ -2992,9 +2896,7 @@ elif menu == "📊 Analytics":
 
             st.divider()
 
-            # -----------------------------
             # MONTHLY SALES TABLE
-            # -----------------------------
 
             st.write("### 📋 Monthly Sales Summary")
 
@@ -3006,9 +2908,7 @@ elif menu == "📊 Analytics":
 
             st.divider()
 
-            # -----------------------------
             # MONTHLY REVENUE CHART
-            # -----------------------------
 
             st.write("### 💰 Monthly Revenue")
 
@@ -3022,9 +2922,7 @@ elif menu == "📊 Analytics":
 
             st.divider()
 
-            # -----------------------------
             # MONTHLY BILL COUNT CHART
-            # -----------------------------
 
             st.write("### 🧾 Monthly Bill Count")
 
@@ -3042,9 +2940,7 @@ elif menu == "📊 Analytics":
                 "No monthly sales data available."
             )
             
-        # =========================================
         # 5. PRODUCT DEMAND ANALYSIS
-        # =========================================
 
         st.subheader("📦 Product Demand Analysis")
 
@@ -3075,9 +2971,7 @@ elif menu == "📊 Analytics":
                 ]
             )
 
-            # -----------------------------
             # DEMAND SUMMARY
-            # -----------------------------
 
             highest_demand = demand_records[0]
 
@@ -3112,9 +3006,7 @@ elif menu == "📊 Analytics":
 
             st.divider()
 
-            # -----------------------------
             # DEMAND TABLE
-            # -----------------------------
 
             st.write("### 📋 Product Demand Summary")
 
@@ -3126,9 +3018,7 @@ elif menu == "📊 Analytics":
 
             st.divider()
 
-            # -----------------------------
             # DEMAND CHART
-            # -----------------------------
 
             st.write("### 📊 Product Demand")
 
@@ -3142,9 +3032,7 @@ elif menu == "📊 Analytics":
 
             st.divider()
 
-            # -----------------------------
             # PURCHASE FREQUENCY
-            # -----------------------------
 
             st.write("### 🧾 Purchase Frequency")
 
@@ -3158,9 +3046,7 @@ elif menu == "📊 Analytics":
 
             st.divider()
 
-            # -----------------------------
             # DEMAND INSIGHT
-            # -----------------------------
 
             st.write("### 💡 Demand Insight")
 
