@@ -307,10 +307,7 @@ def create_bill():
 
         cursor = connection.cursor()
 
-        # ------------------------------------------------
         # Double-check stock before completing the bill
-        # ------------------------------------------------
-
         for item in cart:
 
             cursor.execute("""
@@ -341,9 +338,7 @@ def create_bill():
                 connection.rollback()
                 return
 
-        # ------------------------------------------------
         # Insert sale
-        # ------------------------------------------------
 
         cursor.execute("""
             INSERT INTO sales
@@ -373,9 +368,7 @@ def create_bill():
             round(grand_total, 2)
         ))
 
-        # ------------------------------------------------
         # Insert sale items and update inventory
-        # ------------------------------------------------
 
         for item in cart:
 
@@ -408,9 +401,7 @@ def create_bill():
                 item["product_id"]
             ))
 
-        # ------------------------------------------------
         # Commit everything together
-        # ------------------------------------------------
 
         connection.commit()
 
