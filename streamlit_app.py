@@ -1,7 +1,7 @@
 import streamlit as st
 import streamlit.components.v1 as components
 import pandas as pd
-from database import get_connection
+from database import get_connection, create_tables
 from datetime import date, timedelta
 
 st.set_page_config(
