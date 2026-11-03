@@ -10,6 +10,13 @@ st.set_page_config(
     layout="wide"
 )
 
+@st.cache_resource
+def initialize_database():
+    create_tables()
+
+
+initialize_database()
+
 # PRINT CSS
 
 st.markdown(
