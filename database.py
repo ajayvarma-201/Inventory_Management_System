@@ -11,10 +11,8 @@ def get_connection():
 
     connection = sqlite3.connect(DB_FILE)
 
-    # Enable dictionary-like access to database rows
     connection.row_factory = sqlite3.Row
 
-    # Enable foreign key constraints
     connection.execute("PRAGMA foreign_keys = ON")
 
     return connection
@@ -69,7 +67,7 @@ def create_tables():
             )
         """)
 
-        # Individual items belonging to each bill
+        # Sale items table
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS sale_items (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -91,8 +89,12 @@ def create_tables():
         print("Database tables created successfully!")
 
     except sqlite3.Error as error:
+
         connection.rollback()
+
         print("Database error:", error)
+
+        raise
 
     finally:
         connection.close()
